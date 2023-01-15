@@ -46,6 +46,10 @@ export class User {
     return this.props.deletedAt;
   }
 
+  public hidePassword() {
+    this.props.password = undefined;
+  }
+
   constructor(
     props: Replace<UserProps, {createdAt?: Date; updatedAt?: Date}>,
     id?: number,
