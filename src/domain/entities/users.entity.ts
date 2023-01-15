@@ -46,7 +46,11 @@ export class User {
     return this.props.deletedAt;
   }
 
-  constructor(props: Replace<UserProps, {createdAt?: Date; updatedAt?: Date}>) {
+  constructor(
+    props: Replace<UserProps, {createdAt?: Date; updatedAt?: Date}>,
+    id?: number,
+  ) {
+    this._id = id;
     this.props = props;
   }
 }
