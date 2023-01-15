@@ -6,13 +6,11 @@ interface UserProps {
   firstName: string;
   lastName: string;
   createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
 }
 
 export class User {
   private _id: number;
-  private props: Replace<UserProps, {createdAt?: Date; updatedAt?: Date}>;
+  private props: Replace<UserProps, {createdAt?: Date}>;
 
   get id() {
     return this._id;
@@ -38,22 +36,11 @@ export class User {
     return this.props.createdAt;
   }
 
-  get updatedAt() {
-    return this.props.updatedAt;
-  }
-
-  get deletedAt() {
-    return this.props.deletedAt;
-  }
-
   public hidePassword() {
     this.props.password = undefined;
   }
 
-  constructor(
-    props: Replace<UserProps, {createdAt?: Date; updatedAt?: Date}>,
-    id?: number,
-  ) {
+  constructor(props: Replace<UserProps, {createdAt?: Date}>, id?: number) {
     this._id = id;
     this.props = props;
   }
