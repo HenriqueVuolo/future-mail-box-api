@@ -2,6 +2,7 @@ import {User} from '@domain/entities/users.entity';
 import {UsersRepository} from '@domain/repositories/users.repository';
 import {BadRequestException, Injectable} from '@nestjs/common';
 import {hash} from 'bcrypt';
+import {PrismaUserMapper} from '../mappers/prisma-users.mapper';
 import {PrismaService} from '../prisma.service';
 
 @Injectable()
@@ -26,5 +27,13 @@ export class PrismaUsersRepository implements UsersRepository {
         password: await hash(password, 10),
       },
     });
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await this.prisma.user.findFirst({where: {email}});
+
+    if (!user) return null;
+
+    return PrismaUserMapper.toDomain(user);
   }
 }
