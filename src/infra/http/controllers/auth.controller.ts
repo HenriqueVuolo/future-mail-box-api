@@ -1,9 +1,10 @@
 import {User} from '@domain/entities/users.entity';
 import {LocalAuthGuard} from '@infra/auth/guards/local-auth.guard';
 import {Body, Controller, Post, Req, UseGuards} from '@nestjs/common';
-import {ApiOperation, ApiTags} from '@nestjs/swagger';
+import {ApiBody, ApiOperation, ApiTags} from '@nestjs/swagger';
 import {CreateUser} from '@useCases/create-user';
 import {GenerateToken} from '@useCases/generate-token';
+import {LoginRequest} from '../dtos/login-request';
 import {SignUpRequest} from '../dtos/sign-up-request';
 
 @Controller('auth')
@@ -23,6 +24,7 @@ export class AuthController {
   @Post('login')
   @UseGuards(LocalAuthGuard)
   @ApiOperation({description: 'Login'})
+  @ApiBody({type: LoginRequest})
   async login(
     @Req() req: Request & {user: User},
   ): Promise<{accessToken: string}> {
