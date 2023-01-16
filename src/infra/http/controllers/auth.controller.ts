@@ -1,11 +1,11 @@
-import {User} from '@domain/entities/users.entity';
 import {LocalAuthGuard} from '@infra/auth/guards/local-auth.guard';
 import {Body, Controller, Post, Req, UseGuards} from '@nestjs/common';
 import {ApiBody, ApiOperation, ApiTags} from '@nestjs/swagger';
 import {CreateUser} from '@useCases/create-user';
 import {GenerateToken} from '@useCases/generate-token';
-import {LoginRequest} from '../dtos/login-request';
-import {SignUpRequest} from '../dtos/sign-up-request';
+import {LoginDto} from '../dtos/login.dto';
+import {SignUpDto} from '../dtos/sign-up.dto';
+import {AuthenticatedRequest} from '../requests/authenticated.request';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -17,16 +17,16 @@ export class AuthController {
 
   @Post('signup')
   @ApiOperation({description: 'Signup'})
-  async signup(@Body() payload: SignUpRequest): Promise<void> {
+  async signup(@Body() payload: SignUpDto): Promise<void> {
     await this.createUser.execute(payload);
   }
 
   @Post('login')
   @UseGuards(LocalAuthGuard)
   @ApiOperation({description: 'Login'})
-  @ApiBody({type: LoginRequest})
+  @ApiBody({type: LoginDto})
   async login(
-    @Req() req: Request & {user: User},
+    @Req() req: AuthenticatedRequest,
   ): Promise<{accessToken: string}> {
     return await this.generateToken.execute(req.user);
   }
