@@ -1,10 +1,10 @@
-import {User} from '@domain/entities/users.entity';
+import {User} from '@domain/entities/user.entity';
 import {UsersRepository} from '@domain/repositories/users.repository';
 import {Injectable} from '@nestjs/common';
 
 interface CreateUserRequest {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
 }

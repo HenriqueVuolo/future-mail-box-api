@@ -1,27 +1,28 @@
+import {randomUUID} from 'node:crypto';
 import {Replace} from 'src/helpers/replace';
 
 interface UserProps {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   createdAt: Date;
 }
 
 export class User {
-  private _id: number;
+  private _id: string;
   private props: Replace<UserProps, {createdAt?: Date}>;
 
   get id() {
     return this._id;
   }
 
-  get firstName() {
-    return this.props.firstName;
+  get firstname() {
+    return this.props.firstname;
   }
 
-  get lastName() {
-    return this.props.lastName;
+  get lastname() {
+    return this.props.lastname;
   }
 
   get email() {
@@ -40,8 +41,12 @@ export class User {
     this.props.password = undefined;
   }
 
-  constructor(props: Replace<UserProps, {createdAt?: Date}>, id?: number) {
-    this._id = id;
+  public updateEmail(email: string) {
+    this.props.email = email;
+  }
+
+  constructor(props: Replace<UserProps, {createdAt?: Date}>, id?: string) {
+    this._id = id ?? randomUUID();
     this.props = props;
   }
 }

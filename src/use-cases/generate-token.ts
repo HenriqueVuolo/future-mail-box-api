@@ -1,4 +1,4 @@
-import {User} from '@domain/entities/users.entity';
+import {User} from '@domain/entities/user.entity';
 import {Injectable} from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt';
 
@@ -6,7 +6,9 @@ import {JwtService} from '@nestjs/jwt';
 export class GenerateToken {
   constructor(private jwtService: JwtService) {}
 
-  async execute(user: User): Promise<{accessToken: string}> {
+  async execute(
+    user: Pick<User, 'id' | 'email'>,
+  ): Promise<{accessToken: string}> {
     const jwtToken = this.jwtService.sign({sub: user.id, email: user.email});
 
     return {

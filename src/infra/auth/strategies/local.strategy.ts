@@ -1,4 +1,4 @@
-import {User} from '@domain/entities/users.entity';
+import {User} from '@domain/entities/user.entity';
 import {Injectable} from '@nestjs/common';
 import {PassportStrategy} from '@nestjs/passport';
 import {ValidateUser} from '@useCases/validate-user';

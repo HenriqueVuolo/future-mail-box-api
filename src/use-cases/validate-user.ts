@@ -1,4 +1,4 @@
-import {User} from '@domain/entities/users.entity';
+import {User} from '@domain/entities/user.entity';
 import {UsersRepository} from '@domain/repositories/users.repository';
 import {Injectable, UnauthorizedException} from '@nestjs/common';
 import {compare} from 'bcrypt';
