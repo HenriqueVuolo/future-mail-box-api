@@ -1,4 +1,4 @@
-import {User} from '@domain/entities/users.entity';
+import {User} from '@domain/entities/user.entity';
 import {UsersRepository} from '@domain/repositories/users.repository';
 import {BadRequestException, Injectable} from '@nestjs/common';
 import {hash} from 'bcrypt';
@@ -10,7 +10,7 @@ export class PrismaUsersRepository implements UsersRepository {
   constructor(private prisma: PrismaService) {}
 
   async create(user: User): Promise<void> {
-    const {firstName, lastName, email, password} = user;
+    const {firstname, lastname, email, password} = user;
 
     const emailAlreadyExists = await this.prisma.user.findUnique({
       where: {email},
@@ -21,8 +21,8 @@ export class PrismaUsersRepository implements UsersRepository {
 
     await this.prisma.user.create({
       data: {
-        firstName,
-        lastName,
+        firstname,
+        lastname,
         email,
         password: await hash(password, 10),
       },
@@ -30,10 +30,29 @@ export class PrismaUsersRepository implements UsersRepository {
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    const user = await this.prisma.user.findFirst({where: {email}});
+    const user = await this.prisma.user.findUnique({where: {email}});
 
     if (!user) return null;
 
     return PrismaUserMapper.toDomain(user);
+  }
+
+  async findById(id: string): Promise<User | null> {
+    const user = await this.prisma.user.findUnique({where: {id}});
+
+    if (!user) return null;
+
+    return PrismaUserMapper.toDomain(user);
+  }
+
+  async save(user: User): Promise<void> {
+    const raw = PrismaUserMapper.toPrisma(user);
+
+    await this.prisma.user.update({
+      where: {
+        id: raw.id,
+      },
+      data: raw,
+    });
   }
 }
