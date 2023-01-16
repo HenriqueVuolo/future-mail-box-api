@@ -3,7 +3,10 @@ import {Module} from '@nestjs/common';
 import {JwtModule} from '@nestjs/jwt';
 import {CreateUser} from '@useCases/create-user';
 import {GenerateToken} from '@useCases/generate-token';
+import {GetUser} from '@useCases/get-user';
+import {UpdateUserEmail} from '@useCases/update-user-email';
 import {AuthController} from './controllers/auth.controller';
+import {UserController} from './controllers/user.controller';
 
 @Module({
   imports: [
@@ -13,7 +16,7 @@ import {AuthController} from './controllers/auth.controller';
       signOptions: {expiresIn: '6h'},
     }),
   ],
-  controllers: [AuthController],
-  providers: [CreateUser, GenerateToken],
+  controllers: [AuthController, UserController],
+  providers: [CreateUser, GenerateToken, UpdateUserEmail, GetUser],
 })
 export class HttpModule {}
