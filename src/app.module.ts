@@ -3,7 +3,7 @@ import {LocalStrategy} from '@infra/auth/strategies/local.strategy';
 import {DatabaseModule} from '@infra/database/database.module';
 import {HttpModule} from '@infra/http/http.module';
 import {Module} from '@nestjs/common';
-import {ValidateUser} from '@useCases/validate-user';
+import {ValidateUser} from '@useCases/user/validate-user';
 
 @Module({
   imports: [DatabaseModule, HttpModule],

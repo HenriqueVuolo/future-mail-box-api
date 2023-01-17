@@ -1,10 +1,10 @@
 import {DatabaseModule} from '@infra/database/database.module';
 import {Module} from '@nestjs/common';
 import {JwtModule} from '@nestjs/jwt';
-import {CreateUser} from '@useCases/create-user';
-import {GenerateToken} from '@useCases/generate-token';
-import {GetUser} from '@useCases/get-user';
-import {UpdateUserEmail} from '@useCases/update-user-email';
+import {GenerateToken} from '@useCases/auth/generate-token';
+import {CreateUser} from '@useCases/user/create-user';
+import {GetUser} from '@useCases/user/get-user';
+import {UpdateUserEmail} from '@useCases/user/update-user-email';
 import {AuthController} from './controllers/auth.controller';
 import {UserController} from './controllers/user.controller';
 
@@ -17,6 +17,6 @@ import {UserController} from './controllers/user.controller';
     }),
   ],
   controllers: [AuthController, UserController],
-  providers: [CreateUser, GenerateToken, UpdateUserEmail, GetUser],
+  providers: [CreateUser, GenerateToken, GetUser, UpdateUserEmail],
 })
 export class HttpModule {}

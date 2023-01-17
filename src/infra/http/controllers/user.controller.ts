@@ -1,9 +1,8 @@
-import {User} from '@domain/entities/user.entity';
 import {JwtAuthGuard} from '@infra/auth/guards/jwt-auth.guard';
 import {Body, Controller, Get, Put, Req, UseGuards} from '@nestjs/common';
 import {ApiOperation, ApiTags} from '@nestjs/swagger';
-import {GetUser} from '@useCases/get-user';
-import {UpdateUserEmail} from '@useCases/update-user-email';
+import {GetUser} from '@useCases/user/get-user';
+import {UpdateUserEmail} from '@useCases/user/update-user-email';
 import {UpdateUserEmailDto} from '../dtos/update-user-email.dto';
 import {AuthenticatedRequest} from '../requests/authenticated.request';
 

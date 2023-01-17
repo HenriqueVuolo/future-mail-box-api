@@ -1,7 +1,7 @@
 import {User} from '@domain/entities/user.entity';
 import {Injectable} from '@nestjs/common';
 import {PassportStrategy} from '@nestjs/passport';
-import {ValidateUser} from '@useCases/validate-user';
+import {ValidateUser} from '@useCases/user/validate-user';
 import {Strategy} from 'passport-local';
 
 @Injectable()

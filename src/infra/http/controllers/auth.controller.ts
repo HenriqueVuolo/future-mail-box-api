@@ -1,8 +1,8 @@
 import {LocalAuthGuard} from '@infra/auth/guards/local-auth.guard';
 import {Body, Controller, Post, Req, UseGuards} from '@nestjs/common';
 import {ApiBody, ApiOperation, ApiTags} from '@nestjs/swagger';
-import {CreateUser} from '@useCases/create-user';
-import {GenerateToken} from '@useCases/generate-token';
+import {GenerateToken} from '@useCases/auth/generate-token';
+import {CreateUser} from '@useCases/user/create-user';
 import {LoginDto} from '../dtos/login.dto';
 import {SignUpDto} from '../dtos/sign-up.dto';
 import {AuthenticatedRequest} from '../requests/authenticated.request';
