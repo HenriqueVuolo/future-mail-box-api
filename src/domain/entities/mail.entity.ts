@@ -11,11 +11,7 @@ interface MailProps {
   createdAt: Date;
 }
 
-export enum MailStatus {
-  pending = 'PENDING',
-  sent = 'SENT',
-}
-
+export type MailStatus = 'PENDING' | 'SENT';
 export class Mail {
   private _id: string;
   private props: Replace<MailProps, {createdAt?: Date; status?: MailStatus}>;
@@ -53,7 +49,7 @@ export class Mail {
   }
 
   public send() {
-    this.props.status = MailStatus.sent;
+    this.props.status = 'PENDING';
   }
 
   constructor(
