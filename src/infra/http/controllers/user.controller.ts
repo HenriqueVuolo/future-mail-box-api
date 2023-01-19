@@ -1,4 +1,5 @@
 import {JwtAuthGuard} from '@infra/auth/guards/jwt-auth.guard';
+import {PrismaUserMapper} from '@infra/database/prisma/mappers/prisma-users.mapper';
 import {Body, Controller, Get, Put, Req, UseGuards} from '@nestjs/common';
 import {ApiOperation, ApiTags} from '@nestjs/swagger';
 import {GetUser} from '@useCases/user/get-user';
@@ -22,12 +23,7 @@ export class UserController {
   ): Promise<{id: string; firstname: string; lastname: string; email: string}> {
     const user = await this.getUser.execute(request.user.id);
 
-    return {
-      id: user.id,
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
-    };
+    return PrismaUserMapper.toPrisma(user);
   }
 
   @Put('email')
