@@ -26,10 +26,13 @@ export class UpdateMail {
     });
     if (!mail) throw new NotFoundException('E-mail não encontrado.');
 
-    const updatedMail = new Mail({
-      ...PrismaMailMapper.toPrisma(mail),
-      ...updateData,
-    });
+    const updatedMail = new Mail(
+      {
+        ...PrismaMailMapper.toPrisma(mail),
+        ...updateData,
+      },
+      id,
+    );
 
     await this.mailsRepository.save(updatedMail);
   }
