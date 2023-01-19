@@ -5,6 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import {PrismaMailMapper} from '../mappers/prisma-mails.mapper';
 import {PrismaService} from '../prisma.service';
 
 const SEND_LIMIT_PER_USER = Number(process.env.SEND_LIMIT_PER_USER) || 5;
@@ -37,5 +38,30 @@ export class PrismaMailsRepository implements MailsRepository {
         userId,
       },
     });
+  }
+
+  async save(mail: Mail): Promise<void> {
+    const raw = PrismaMailMapper.toPrisma(mail);
+
+    await this.prisma.mail.update({
+      where: {
+        id: raw.id,
+      },
+      data: raw,
+    });
+  }
+
+  async findOne(data: Partial<Mail>): Promise<Mail> {
+    const mail = await this.prisma.mail.findFirst({where: data});
+    return PrismaMailMapper.toDomain(mail);
+  }
+
+  async findMany(data: Partial<Mail>): Promise<Mail[]> {
+    const mails = await this.prisma.mail.findMany({where: data});
+    return mails.map((mail) => PrismaMailMapper.toDomain(mail));
+  }
+
+  async delete(id: Mail['id']): Promise<void> {
+    await this.prisma.mail.delete({where: {id}});
   }
 }
