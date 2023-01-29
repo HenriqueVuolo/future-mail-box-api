@@ -49,7 +49,7 @@ export class MailController {
   }
 
   @Get(':id')
-  @ApiOperation({description: 'Get all mails from user'})
+  @ApiOperation({description: 'Get mail by id'})
   async getOne(
     @Req() request: AuthenticatedRequest,
     @Param('id') id: string,

@@ -8,7 +8,8 @@ import {
 import {PrismaMailMapper} from '../mappers/prisma-mails.mapper';
 import {PrismaService} from '../prisma.service';
 
-const SEND_LIMIT_PER_USER = Number(process.env.SEND_LIMIT_PER_USER) || 5;
+const MAX_PENDING_MAILS_PER_USER =
+  Number(process.env.MAX_PENDING_MAILS_PER_USER) || 5;
 
 @Injectable()
 export class PrismaMailsRepository implements MailsRepository {
@@ -22,10 +23,13 @@ export class PrismaMailsRepository implements MailsRepository {
     });
     if (!userExist) throw new NotFoundException('Usuário não existe.');
 
-    const sentEmail = await this.prisma.mail.count({where: {userId}});
-    if (sentEmail > SEND_LIMIT_PER_USER)
+    const pendingEmails = await this.prisma.mail.count({
+      where: {userId, status: 'PENDING'},
+    });
+
+    if (pendingEmails >= MAX_PENDING_MAILS_PER_USER)
       throw new BadRequestException(
-        'Não foi possível criar uma nova mensagem, você alcançou o limite.',
+        'Você atingiu o limite de e-mails pendentes.',
       );
 
     await this.prisma.mail.create({
