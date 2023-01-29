@@ -49,7 +49,7 @@ export class Mail {
   }
 
   public send() {
-    this.props.status = 'PENDING';
+    this.props.status = 'SENT';
   }
 
   constructor(
