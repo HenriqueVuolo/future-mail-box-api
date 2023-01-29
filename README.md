@@ -20,8 +20,14 @@ O projeto ainda está em desenvolvimento e a ideia é desenvolver primeiramente 
 
 ## Setup
 - Sobe *container* com o banco de dados:
-  - `docker compouse up`
+```
+docker compose up
+```
 - Roda aplicação:
-  - `npm run start:dev`
+```
+npm run start:dev
+```
 - Roda *migrations*:
-  - `npx prisma migration dev`
+```
+npx prisma migration dev
+```
