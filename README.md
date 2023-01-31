@@ -8,7 +8,13 @@
 ## :book: Sobre
 Este repositório faz parte do projeto `Future MailBox`, uma aplicação que funciona como uma cápsula do tempo, na qual o usuário pode cadastrar e-mails para serem enviados no futuro. Que tal escrever uma "carta" para você em 10 anos? Ou para um filho? Fazer previsões ou até mesmo definir metas pessoais? Esse é o objetivo desse projeto.
 
-O projeto ainda está em desenvolvimento e a ideia é desenvolver primeiramente apenas as principais funcionalidades. Este repositório contém a primeira versão da *API*. O próximo passo será o desenvolvimento do *front-end* (*NextJS*) e após isso o *Microservice* de envio de e-mail. Com essas três bases prontas o foco será trazer novas funcionalidades.
+O projeto ainda está em desenvolvimento e é divido em três projetos menores:
+
+- [API](https://github.com/HenriqueSantana1/future-mail-box-api/) (Pronto - Este repositório)
+- [Front-End](https://github.com/HenriqueSantana1/future-mail-box-web/) (Em desenvolvimento)
+- [Microservice](https://github.com/HenriqueSantana1) (Em espera)
+
+A ideia é desenvolver primeiramente as funcionalidades principais e então trazer novas funcionalidades.
 
 
 
