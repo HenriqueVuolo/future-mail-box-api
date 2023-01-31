@@ -20,6 +20,7 @@ O projeto ainda está em desenvolvimento e a ideia é desenvolver primeiramente 
 - Docker
 - PostgreSQL
 - JEST
+- Jobs (Cron)
 - Kafka (será implementado no futuro para comunicação com o *microservice*.);
 
 ## :gear: Setup
