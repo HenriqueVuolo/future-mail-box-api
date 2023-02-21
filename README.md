@@ -10,9 +10,9 @@ Este repositório faz parte do projeto `Future MailBox`, uma aplicação que fun
 
 O projeto ainda está em desenvolvimento e é divido em três projetos menores:
 
-- [API](https://github.com/HenriqueSantana1/future-mail-box-api/) (Pronto)
-- [Mail Microservice](https://github.com/HenriqueSantana1/mail-microservice) (Pronto - Este repositório)
-- [Front-End](https://github.com/HenriqueSantana1/future-mail-box-web/) (Em desenvolvimento)
+- [API](https://github.com/HenriqueSantana1/future-mail-box-api/) (Este repositório)
+- [Mail Microservice](https://github.com/HenriqueSantana1/mail-microservice)
+- [Front-End](https://github.com/HenriqueSantana1/future-mail-box-web/)
 
 A ideia é desenvolver primeiramente as funcionalidades principais e então trazer novas funcionalidades.
 
