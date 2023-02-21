@@ -10,9 +10,9 @@ Este repositório faz parte do projeto `Future MailBox`, uma aplicação que fun
 
 O projeto ainda está em desenvolvimento e é divido em três projetos menores:
 
-- [API](https://github.com/HenriqueSantana1/future-mail-box-api/) (Pronto - Este repositório)
+- [API](https://github.com/HenriqueSantana1/future-mail-box-api/) (Pronto)
+- [Mail Microservice](https://github.com/HenriqueSantana1/mail-microservice) (Pronto - Este repositório)
 - [Front-End](https://github.com/HenriqueSantana1/future-mail-box-web/) (Em desenvolvimento)
-- [Microservice](https://github.com/HenriqueSantana1) (Em espera)
 
 A ideia é desenvolver primeiramente as funcionalidades principais e então trazer novas funcionalidades.
 
@@ -27,18 +27,18 @@ A ideia é desenvolver primeiramente as funcionalidades principais e então traz
 - PostgreSQL
 - JEST
 - Jobs (Cron)
-- Kafka (será implementado no futuro para comunicação com o *microservice*.);
+- Kafka
 
 ## :gear: Setup
-- Sobe *container* com o banco de dados:
+- Para subir *container* com o banco de dados:
 ```
 docker compose up
 ```
-- Roda aplicação:
+- Para rodar a aplicação:
 ```
 npm run start:dev
 ```
-- Roda *migrations*:
+- Para rodar as *migrations*:
 ```
 npx prisma migration dev
 ```
