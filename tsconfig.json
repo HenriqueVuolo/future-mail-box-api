@@ -18,9 +18,9 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@application/*":["./src/application/*"],
       "@domain/*":["./src/domain/*"],
       "@infra/*":["./src/infra/*"],
+      "@messaging/*":["./src/infra/messaging/*"],
       "@useCases/*":["./src/use-cases/*"],
     }
   }
