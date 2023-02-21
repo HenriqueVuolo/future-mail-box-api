@@ -1,10 +1,17 @@
 import {MailsRepository} from '@domain/repositories/mails.repository';
+import {UsersRepository} from '@domain/repositories/users.repository';
+import {KafkaService} from '@infra/messaging/kafka/kafka.service';
 import {Injectable} from '@nestjs/common';
 import {Cron, CronExpression} from '@nestjs/schedule';
+import {mountMailPayload} from 'src/helpers/mountMailPayload';
 
 @Injectable()
 export class SendMail {
-  constructor(private mailsRepository: MailsRepository) {}
+  constructor(
+    private mailsRepository: MailsRepository,
+    private usersRepository: UsersRepository,
+    private kafkaService: KafkaService,
+  ) {}
 
   @Cron(CronExpression.EVERY_6_HOURS)
   async execute(): Promise<void> {
@@ -14,8 +21,17 @@ export class SendMail {
     });
 
     mails.forEach(async (mail) => {
-      console.log('Chama microservice de envio de e-mail:', mail);
-      mail.send();
+      const sender = await this.usersRepository.findById(mail?.userId);
+
+      if (sender?.id) {
+        this.kafkaService.emit(
+          'mails.send-mail',
+          mountMailPayload({mail, sender}),
+        );
+        mail.send();
+      } else {
+        mail.cancel();
+      }
       await this.mailsRepository.save(mail);
     });
   }
