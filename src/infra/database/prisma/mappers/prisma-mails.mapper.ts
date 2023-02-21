@@ -5,7 +5,7 @@ export class PrismaMailMapper {
   static toPrisma(mail: Mail) {
     return {
       id: mail.id,
-      title: mail.title,
+      subject: mail.subject,
       content: mail.content,
       status: mail.status,
       userId: mail.userId,
@@ -18,7 +18,7 @@ export class PrismaMailMapper {
   static toDomain(raw: RawMail): Mail {
     return new Mail(
       {
-        title: raw.title,
+        subject: raw.subject,
         content: raw.content,
         status: raw.status,
         userId: raw.userId,

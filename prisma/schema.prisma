@@ -21,7 +21,7 @@ model User {
 
 model Mail {
   id        String   @id @default(uuid())
-  title     String
+  subject   String
   content   String
   status    Status   @default(PENDING)
   user      User     @relation(fields: [userId], references: [id])
@@ -36,4 +36,5 @@ model Mail {
 enum Status {
   PENDING
   SENT
+  CANCELED
 }

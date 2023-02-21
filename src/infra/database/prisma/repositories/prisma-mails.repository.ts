@@ -16,7 +16,7 @@ export class PrismaMailsRepository implements MailsRepository {
   constructor(private prisma: PrismaService) {}
 
   async create(mail: Mail): Promise<void> {
-    const {title, content, to, sendAt, userId, status} = mail;
+    const {subject, content, to, sendAt, userId, status} = mail;
 
     const userExist = await this.prisma.user.findUnique({
       where: {id: userId},
@@ -34,7 +34,7 @@ export class PrismaMailsRepository implements MailsRepository {
 
     await this.prisma.mail.create({
       data: {
-        title,
+        subject,
         content,
         status,
         to,

@@ -4,7 +4,7 @@ import {IsEmail, IsNotEmpty} from 'class-validator';
 export class CreateMailDto {
   @ApiProperty()
   @IsNotEmpty()
-  title: string;
+  subject: string;
 
   @ApiProperty()
   @IsNotEmpty()

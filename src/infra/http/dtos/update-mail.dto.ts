@@ -3,7 +3,7 @@ import {IsEmail, IsOptional} from 'class-validator';
 
 export class UpdateMailDto {
   @ApiProperty()
-  title: string;
+  subject: string;
 
   @ApiProperty()
   content: string;

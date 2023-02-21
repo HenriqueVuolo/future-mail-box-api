@@ -4,7 +4,7 @@ import {PrismaMailMapper} from '@infra/database/prisma/mappers/prisma-mails.mapp
 import {Injectable, NotFoundException} from '@nestjs/common';
 
 interface UpdateMailRequest {
-  title?: string;
+  subject?: string;
   content?: string;
   to?: string;
   sendAt?: Date;

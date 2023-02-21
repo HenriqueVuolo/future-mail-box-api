@@ -37,10 +37,10 @@ export class MailController {
   @ApiOperation({description: 'Create mail'})
   async create(
     @Req() request: AuthenticatedRequest,
-    @Body() {title, content, sendAt, to}: CreateMailDto,
+    @Body() {subject, content, sendAt, to}: CreateMailDto,
   ): Promise<void> {
     await this.createMail.execute({
-      title,
+      subject,
       content,
       sendAt,
       to,

@@ -3,7 +3,7 @@ import {MailsRepository} from '@domain/repositories/mails.repository';
 import {Injectable} from '@nestjs/common';
 
 interface CreateMailRequest {
-  title: string;
+  subject: string;
   content: string;
   status?: MailStatus;
   userId: string;

@@ -2,7 +2,7 @@ import {randomUUID} from 'node:crypto';
 import {Replace} from 'src/helpers/replace';
 
 interface MailProps {
-  title: string;
+  subject: string;
   content: string;
   status: MailStatus;
   userId: string;
@@ -11,7 +11,7 @@ interface MailProps {
   createdAt: Date;
 }
 
-export type MailStatus = 'PENDING' | 'SENT';
+export type MailStatus = 'PENDING' | 'SENT' | 'CANCELED';
 export class Mail {
   private _id: string;
   private props: Replace<MailProps, {createdAt?: Date; status?: MailStatus}>;
@@ -20,8 +20,8 @@ export class Mail {
     return this._id;
   }
 
-  get title() {
-    return this.props.title;
+  get subject() {
+    return this.props.subject;
   }
 
   get content() {
@@ -50,6 +50,10 @@ export class Mail {
 
   public send() {
     this.props.status = 'SENT';
+  }
+
+  public cancel() {
+    this.props.status = 'CANCELED';
   }
 
   constructor(
