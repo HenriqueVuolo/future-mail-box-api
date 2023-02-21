@@ -3,7 +3,7 @@ import {Mail} from './mail.entity';
 describe('Mail', () => {
   it('should be able to create a mail', () => {
     const mail = new Mail({
-      title: 'title',
+      subject: 'subject',
       content: 'content',
       userId: '1',
       sendAt: new Date(),
@@ -11,6 +11,6 @@ describe('Mail', () => {
     });
 
     expect(mail).toBeInstanceOf(Mail);
-    expect(mail.title).toBe('title');
+    expect(mail.subject).toBe('subject');
   });
 });
