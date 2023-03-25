@@ -1,7 +1,7 @@
 import {LocalAuthGuard} from '@infra/auth/guards/local-auth.guard';
 import {Body, Controller, Post, Req, UseGuards} from '@nestjs/common';
 import {ApiBody, ApiOperation, ApiTags} from '@nestjs/swagger';
-import {GenerateToken} from '@useCases/auth/generate-token';
+import {GenerateToken, SigninResponse} from '@useCases/auth/generate-token';
 import {CreateUser} from '@useCases/user/create-user';
 import {LoginDto} from '../dtos/login.dto';
 import {SignUpDto} from '../dtos/sign-up.dto';
@@ -25,9 +25,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @ApiOperation({description: 'Login'})
   @ApiBody({type: LoginDto})
-  async login(
-    @Req() req: AuthenticatedRequest,
-  ): Promise<{accessToken: string}> {
+  async login(@Req() req: AuthenticatedRequest): Promise<SigninResponse> {
     return await this.generateToken.execute(req.user);
   }
 }
