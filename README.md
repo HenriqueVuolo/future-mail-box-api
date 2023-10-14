@@ -5,20 +5,20 @@
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
 
-## :book: Sobre
-Este repositório faz parte do projeto `Future MailBox`, uma aplicação que funciona como uma cápsula do tempo, na qual o usuário pode cadastrar e-mails para serem enviados no futuro. Que tal escrever uma "carta" para você em 10 anos? Ou para um filho? Fazer previsões ou até mesmo definir metas pessoais? Esse é o objetivo desse projeto.
+## :book: About
 
-O projeto ainda está em desenvolvimento e é divido em três projetos menores:
+This repo is part of the `Future MailBox project`, an application that works like a time capsule, allowing users to schedule emails for future delivery. How about writing a "letter" to yourself in 10 years? Or to a child? Making predictions or even setting personal goals? That's the goal of this project.
 
-- [API](https://github.com/HenriqueSantana1/future-mail-box-api/) (Este repositório)
-- [Mail Microservice](https://github.com/HenriqueSantana1/mail-microservice)
-- [Front-End](https://github.com/HenriqueSantana1/future-mail-box-web/)
+The project is still under development and is divided into three smaller projects:
 
-A ideia é desenvolver primeiramente as funcionalidades principais e então trazer novas funcionalidades.
+- [API](https://github.com/HenriqueVuolo/future-mail-box-api/)
+- [Mail Microservice](https://github.com/HenriqueVuolo/mail-microservice) (this repo)
+- [Front-End](https://github.com/HenriqueVuolo/future-mail-box-web/)
+
+The idea is to initially develop the core functionalities and then introduce new features.
 
 
-
-## :rocket: Tecnologias
+## :rocket: Techs
 
 - NestJS
 - TypeScript
@@ -30,15 +30,15 @@ A ideia é desenvolver primeiramente as funcionalidades principais e então traz
 - Kafka
 
 ## :gear: Setup
-- Para subir *container* com o banco de dados:
+- To start the database container:
 ```
 docker compose up
 ```
-- Para rodar a aplicação:
+- To run the application:
 ```
 npm run start:dev
 ```
-- Para rodar as *migrations*:
+- To run the migrations:
 ```
 npx prisma migration dev
 ```
